@@ -26,11 +26,9 @@ public class Main {
                 dinnerAdvisor.getAdvice(moneyBeforeSalary, daysBeforeSalary);
 
             } else if (command == 3) {
-                System.out.println("За какой день вы хотите ввести трату: 1-ПН, 2-ВТ, 3-СР, 4-ЧТ, 5-ПТ, 6-СБ, 7-ВС?");
-                int day = scanner.nextInt();
                 System.out.println("Введите размер траты:");
                 double expense = scanner.nextDouble();
-                moneyBeforeSalary= expensesManager.saveExpense(moneyBeforeSalary, expense, day);
+                moneyBeforeSalary= expensesManager.saveExpense(moneyBeforeSalary, expense);
 
             } else if (command == 4) {
                 expensesManager.printAllExpenses();
@@ -38,13 +36,21 @@ public class Main {
             } else if (command == 5) {
                 System.out.println("Самая большая сумма расходов на этой неделе составила " + expensesManager.findMaxExpense() + " руб.");
 
+            } else if (command == 6) {
+                expensesManager.removeAllExpenses();
+            } else if (command == 7) {
+                if (expensesManager.expenses.size() != 0) {
+                    System.out.println("Введите трату:");
+                    double expense = scanner.nextDouble();
+                    expensesManager.removeExpense(expense);
+                } else System.out.println("Список трат пуст.");
+
             } else if (command == 0) {
                 System.out.println("Выход");
                 break;
 
-            } else {
-                System.out.println("Извините, такой команды пока нет.");
-            }
+            } else System.out.println("Извините, такой команды пока нет.");
+
         }
     }
 
@@ -53,8 +59,10 @@ public class Main {
         System.out.println("1 - Конвертировать валюту");
         System.out.println("2 - Получить совет");
         System.out.println("3 - Ввести трату");
-        System.out.println("4 - Показать траты за неделю");
-        System.out.println("5 - Показать самую большую сумму расходов за неделю");
+        System.out.println("4 - Показать все траты");
+        System.out.println("5 - Показать самую большую сумму расходов");
+        System.out.println("6 - Очистить список трат");
+        System.out.println("7 - Найти и удалить трату");
         System.out.println("0 - Выход");
     }
 }
