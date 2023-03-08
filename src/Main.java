@@ -39,7 +39,7 @@ public class Main {
                         + expensesManager.findMaxExpenseInCategory(category) + " руб.");
             } else if (command == 6) {
                 expensesManager.removeAllExpenses();
-            } else if (command == 7) { // Допишите остальные пункты меню
+            } else if (command == 7) {
                 System.out.println("Всего потрачено: " + expensesManager.getExpensesSum());
             } else if (command == 8) {
                 System.out.println("Какую категорию вы хотите удалить?");

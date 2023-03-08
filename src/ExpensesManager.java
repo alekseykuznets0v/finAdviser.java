@@ -10,14 +10,14 @@ public class ExpensesManager{
     double saveExpense(double moneyBeforeSalary, double expense, String category) {
         moneyBeforeSalary = moneyBeforeSalary - expense;
         System.out.println("Значение сохранено! Ваш текущий баланс в рублях: " + moneyBeforeSalary);
-        // Замените на работу с таблицей
-        if (expensesByCategories.containsKey(category)){ // Проверьте наличие категории
-            ArrayList<Double> expensesList = expensesByCategories.get(category); // Получите список трат в этой категории
-            expensesList.add(expense); // Добавьте трату
+
+        if (expensesByCategories.containsKey(category)){
+            ArrayList<Double> expensesList = expensesByCategories.get(category);
+            expensesList.add(expense);
         } else {
             ArrayList<Double> newExpensesList = new ArrayList<>();
-            newExpensesList.add(expense); // Создайте новый список трат и добавьте в него сумму
-            expensesByCategories.put(category, newExpensesList); // Сохраните категорию и новый список трат в хеш-таблицу
+            newExpensesList.add(expense);
+            expensesByCategories.put(category, newExpensesList);
         }
         if (moneyBeforeSalary < 1000) {
             System.out.println("На вашем счету осталось совсем немного. Стоит начать экономить!");
@@ -26,7 +26,6 @@ public class ExpensesManager{
     }
 
     void printAllExpensesByCategories() {
-        // Замените логику для работы с таблицами
         for (String category : expensesByCategories.keySet()) {
             System.out.println(category);
             for (Double expense : expensesByCategories.get(category)){
@@ -49,7 +48,7 @@ public class ExpensesManager{
     }
 
     void removeAllExpenses() {
-        expensesByCategories.clear(); // Таблица называется иначе
+        expensesByCategories.clear();
         System.out.println("Траты удалены.");
     }
 
