@@ -24,31 +24,32 @@ public class Main {
 
             } else if (command == 2) {
                 dinnerAdvisor.getAdvice(moneyBeforeSalary, daysBeforeSalary);
-
             } else if (command == 3) {
                 System.out.println("Введите размер траты:");
                 double expense = scanner.nextDouble();
-                moneyBeforeSalary= expensesManager.saveExpense(moneyBeforeSalary, expense);
-
+                System.out.println("К какой категории относится трата?");
+                String category = scanner.next();
+                moneyBeforeSalary = expensesManager.saveExpense(moneyBeforeSalary, expense, category);
             } else if (command == 4) {
-                expensesManager.printAllExpenses();
-
+                expensesManager.printAllExpensesByCategories();
             } else if (command == 5) {
-                System.out.println("Самая большая сумма расходов на этой неделе составила " + expensesManager.findMaxExpense() + " руб.");
-
+                System.out.println("В какой категории искать?");
+                String category = scanner.next();
+                System.out.println("Самая большая трата в категории " + category + " составила "
+                        + expensesManager.findMaxExpenseInCategory(category) + " руб.");
             } else if (command == 6) {
                 expensesManager.removeAllExpenses();
-            } else if (command == 7) {
-                if (expensesManager.expenses.size() != 0) {
-                    System.out.println("Введите трату:");
-                    double expense = scanner.nextDouble();
-                    expensesManager.removeExpense(expense);
-                } else System.out.println("Список трат пуст.");
-
+            } else if (command == 7) { // Допишите остальные пункты меню
+                System.out.println("Всего потрачено: " + expensesManager.getExpensesSum());
+            } else if (command == 8) {
+                System.out.println("Какую категорию вы хотите удалить?");
+                String category = scanner.next();
+                expensesManager.removeCategory(category);
+            } else if (command == 9) {
+                System.out.println("В категории " + expensesManager.getMaxCategoryName() + " вы потратили больше всего.");// Напечатайте фразу "В категории ИМЯ_КАТЕГОРИИ вы потратили больше всего.");
             } else if (command == 0) {
                 System.out.println("Выход");
                 break;
-
             } else System.out.println("Извините, такой команды пока нет.");
 
         }
@@ -59,10 +60,12 @@ public class Main {
         System.out.println("1 - Конвертировать валюту");
         System.out.println("2 - Получить совет");
         System.out.println("3 - Ввести трату");
-        System.out.println("4 - Показать все траты");
-        System.out.println("5 - Показать самую большую сумму расходов");
-        System.out.println("6 - Очистить список трат");
-        System.out.println("7 - Найти и удалить трату");
+        System.out.println("4 - Показать траты по категориям");
+        System.out.println("5 - Показать самую большую трату в выбранной категории");
+        System.out.println("6 - Очистить таблицу трат");
+        System.out.println("7 - Вернуть сумму всех трат");
+        System.out.println("8 - Удалить категорию");
+        System.out.println("9 - Получить имя самой дорогой категории");
         System.out.println("0 - Выход");
     }
 }
